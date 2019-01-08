@@ -1,127 +1,272 @@
 /*
-	Road Trip by TEMPLATED
-	templated.co @templatedco
-	Released for free under the Creative Commons Attribution 3.0 license (templated.co/license)
+	Astral by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
 */
 
 (function($) {
 
-	skel.breakpoints({
-		xlarge:	'(max-width: 1680px)',
-		large:	'(max-width: 1280px)',
-		medium:	'(max-width: 980px)',
-		small:	'(max-width: 736px)',
-		xsmall:	'(max-width: 480px)'
-	});
+	var $window = $(window),
+		$body = $('body'),
+		$wrapper = $('#wrapper'),
+		$main = $('#main'),
+		$panels = $main.children('.panel'),
+		$nav = $('#nav'), $nav_links = $nav.children('a');
 
-	$(function() {
+	// Breakpoints.
+		breakpoints({
+			xlarge:  [ '1281px',  '1680px' ],
+			large:   [ '981px',   '1280px' ],
+			medium:  [ '737px',   '980px'  ],
+			small:   [ '361px',   '736px'  ],
+			xsmall:  [ null,      '360px'  ]
+		});
 
-		var	$window = $(window),
-			$body = $('body'),
-			$header = $('#header'),
-			$banner = $('#banner');
+	// Play initial animations on page load.
+		$window.on('load', function() {
+			window.setTimeout(function() {
+				$body.removeClass('is-preload');
+			}, 100);
+		});
 
-		var $height = $('#header').height();
+	// Nav.
+		$nav_links
+			.on('click', function(event) {
 
-		// Disable animations/transitions until the page has loaded.
-			$body.addClass('is-loading');
+				var href = $(this).attr('href');
 
-			$window.on('load', function() {
-				window.setTimeout(function() {
-					$body.removeClass('is-loading');
-				}, 100);
+				// Not a panel link? Bail.
+					if (href.charAt(0) != '#'
+					||	$panels.filter(href).length == 0)
+						return;
+
+				// Prevent default.
+					event.preventDefault();
+					event.stopPropagation();
+
+				// Change panels.
+					if (window.location.hash != href)
+						window.location.hash = href;
+
 			});
 
-		// Fix: Placeholder polyfill.
-			$('form').placeholder();
+	// Panels.
 
-		// Prioritize "important" elements on medium.
-			skel.on('+medium -medium', function() {
-				$.prioritize(
-					'.important\\28 medium\\29',
-					skel.breakpoint('medium').active
-				);
-			});
+		// Initialize.
+			(function() {
 
-		// Banner
+				var $panel, $link;
 
-			if ($banner.length > 0) {
+				// Get panel, link.
+					if (window.location.hash) {
 
-				// IE: Height fix.
-					if (skel.vars.browser == 'ie'
-					&&	skel.vars.IEVersion > 9) {
-
-						skel.on('-small !small', function() {
-							$banner.css('height', '100vh');
-						});
-
-						skel.on('+small', function() {
-							$banner.css('height', '');
-						});
+				 		$panel = $panels.filter(window.location.hash);
+						$link = $nav_links.filter('[href="' + window.location.hash + '"]');
 
 					}
 
-				// More button.
-					$banner.find('.more')
-						.addClass('scrolly');
+				// No panel/link? Default to first.
+					if (!$panel
+					||	$panel.length == 0) {
 
-			}
+						$panel = $panels.first();
+						$link = $nav_links.first();
 
+					}
 
-		// Get BG Image
+				// Deactivate all panels except this one.
+					$panels.not($panel)
+						.addClass('inactive')
+						.hide();
 
-			if ( $( ".bg-img" ).length ) {
+				// Activate link.
+					$link
+						.addClass('active');
 
-				$( ".bg-img" ).each(function() {
+				// Reset scroll.
+					$window.scrollTop(0);
 
-					var post 	= $(this),
-						bg 		= post.data('bg');
+			})();
 
-					post.css( 'background-image', 'url(images/' + bg + ')' );
+		// Hashchange event.
+			$window.on('hashchange', function(event) {
 
-				});
+				var $panel, $link;
 
+				// Get panel, link.
+					if (window.location.hash) {
 
-			}
+				 		$panel = $panels.filter(window.location.hash);
+						$link = $nav_links.filter('[href="' + window.location.hash + '"]');
 
-		// Posts
+						// No target panel? Bail.
+							if ($panel.length == 0)
+								return;
 
-			$( ".post" ).each( function() {
-				var p = $(this),
-					i = p.find('.inner'),
-					m = p.find('.more');
+					}
 
-				m.addClass('scrolly');
+				// No panel/link? Default to first.
+					else {
 
-				p.scrollex({
-					top: '40vh',
-					bottom: '40vh',
-					terminate: 	function() { m.removeClass('current'); i.removeClass('current'); },
-					enter: 		function() { m.addClass('current'); i.addClass('current'); },
-					leave: 		function() { m.removeClass('current'); i.removeClass('current'); }
-				});
+						$panel = $panels.first();
+						$link = $nav_links.first();
+
+					}
+
+				// Deactivate all panels.
+					$panels.addClass('inactive');
+
+				// Deactivate all links.
+					$nav_links.removeClass('active');
+
+				// Activate target link.
+					$link.addClass('active');
+
+				// Set max/min height.
+					$main
+						.css('max-height', $main.height() + 'px')
+						.css('min-height', $main.height() + 'px');
+
+				// Delay.
+					setTimeout(function() {
+
+						// Hide all panels.
+							$panels.hide();
+
+						// Show target panel.
+							$panel.show();
+
+						// Set new max/min height.
+							$main
+								.css('max-height', $panel.outerHeight() + 'px')
+								.css('min-height', $panel.outerHeight() + 'px');
+
+						// Reset scroll.
+							$window.scrollTop(0);
+
+						// Delay.
+							window.setTimeout(function() {
+
+								// Activate target panel.
+									$panel.removeClass('inactive');
+
+								// Clear max/min height.
+									$main
+										.css('max-height', '')
+										.css('min-height', '');
+
+								// IE: Refresh.
+									$window.triggerHandler('--refresh');
+
+								// Unlock.
+									locked = false;
+
+							}, (breakpoints.active('small') ? 0 : 500));
+
+					}, 250);
 
 			});
 
-		// Scrolly.
-			if ( $( ".scrolly" ).length ) {
+	// IE: Fixes.
+		if (browser.name == 'ie') {
 
-				$('.scrolly').scrolly();
-			}
+			// Fix min-height/flexbox.
+				$window.on('--refresh', function() {
 
-		// Menu.
-			$('#menu')
-				.append('<a href="#menu" class="close"></a>')
-				.appendTo($body)
-				.panel({
-					delay: 500,
-					hideOnClick: true,
-					hideOnSwipe: true,
-					resetScroll: true,
-					resetForms: true,
-					side: 'right'
+					$wrapper.css('height', 'auto');
+
+					window.setTimeout(function() {
+
+						var h = $wrapper.height(),
+							wh = $window.height();
+
+						if (h < wh)
+							$wrapper.css('height', '100vh');
+
+					}, 0);
+
 				});
 
-	});
+				$window.on('resize load', function() {
+					$window.triggerHandler('--refresh');
+				});
+
+			// Fix intro pic.
+				$('.panel.intro').each(function() {
+
+					var $pic = $(this).children('.pic'),
+						$img = $pic.children('img');
+
+					$pic
+						.css('background-image', 'url(' + $img.attr('src') + ')')
+						.css('background-size', 'cover')
+						.css('background-position', 'center');
+
+					$img
+						.css('visibility', 'hidden');
+
+				});
+
+		}
+
+$('#projects .row').slick({
+  dots: true,
+  infinite: true,
+  speed: 500,
+  cssEase: 'linear',
+  dots: true,
+  autoplay: true,
+  autoplaySpeed: 3000,
+
+});
+
+
+//postmail
+    //update this with your $form selector
+    var form_id = "jquery_form";
+
+    var data = {
+        "access_token": "w44ow3razfsyzf59wky09wfs"
+    };
+
+    function onSuccess() {
+        // remove this to avoid redirect
+        window.location = window.location.pathname + "?message=Email+Successfully+Sent%21&isError=0";
+    }
+
+    function onError(error) {
+        // remove this to avoid redirect
+        window.location = window.location.pathname + "?message=Email+could+not+be+sent.&isError=1";
+    }
+
+    var sendButton = $("#" + form_id + " [name='send']");
+
+    function send() {
+        sendButton.val('Sending…');
+        sendButton.prop('disabled',true);
+        var name = $("#" + form_id + " [name='name']").val();
+        var email = $("#" + form_id + " [name='email']").val();
+        var subject = $("#" + form_id + " [name='subject']").val();
+        var message = $("#" + form_id + " [name='message']").val();
+	        
+	data['name'] = name;
+        data['email'] = email;
+	data['subject'] = subject;
+        data['message'] = message;
+
+        $.post('https://postmail.invotes.com/send',
+            data,
+            onSuccess
+        ).fail(onError);
+
+        return false;
+    }
+
+    sendButton.on('click', send);
+
+    var $form = $("#" + form_id);
+    $form.submit(function( event ) {
+        event.preventDefault();
+    });
 
 })(jQuery);
