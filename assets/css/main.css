@@ -78,21 +78,38 @@ input, select, textarea {
 #projects .row #caroselFooter{
 	width: 100%;
 	height: 10%;
-	color: white;
-	background-color: black;
-	opacity: 0.5;
+	color: black;
+	background-color: white;
 	padding: 10px;
+	border-radius: 0px 0px 5px 5px;
+	border-left: 1px solid black;
+	border-right: 1px solid black;
+	border-bottom: 1px solid black;
+
 }
 
 #projects .row #caroselFooter a{
 	color: white;
 }
 
+#projects .row #caroselFooter button{
+	color: white;
+	border-radius: 5px;
+}
+
 #projects .row img{
 	width: 100%;
 	height: 100%;
-
+	border-radius: 5px 5px 0px 0px;
+	border-left: 1px solid black;
+	border-right: 1px solid black;
+	border-top: 1px solid black;
 }
+
+#contact .row{
+	border-radius: 5px;
+}
+
 
 
 	.row {
@@ -1505,6 +1522,7 @@ input, select, textarea {
 		-webkit-transition: background-color .25s ease-in-out;
 		-ms-transition: background-color .25s ease-in-out;
 		transition: background-color .25s ease-in-out;
+		border-radius: 5px;
 	}
 
 		form input[type="text"]:focus,
@@ -1621,6 +1639,7 @@ input, select, textarea {
 		cursor: pointer;
 		outline: 0;
 		padding: 0.7em 1.5em 0.7em 1.5em;
+		border-radius: 5px;
 	}
 
 		input[type="button"]:hover,

@@ -211,6 +211,7 @@
 
 $('#projects .row').slick({
   dots: true,
+  arrows: false,
   infinite: true,
   speed: 500,
   cssEase: 'linear',
@@ -220,53 +221,25 @@ $('#projects .row').slick({
 
 });
 
+      emailjs.init("user_DOyZXEt52dypmFFUwlq7D");
+var myform = $("#contactForm");
+myform.submit(function(event){
+	event.preventDefault();
 
-//postmail
-    //update this with your $form selector
-    var form_id = "jquery_form";
+  // Change to your service ID, or keep using the default service
+  var service_id = "default_service";
+  var template_id = "template_33SrHbDo";
 
-    var data = {
-        "access_token": "w44ow3razfsyzf59wky09wfs"
-    };
-
-    function onSuccess() {
-        // remove this to avoid redirect
-        window.location = window.location.pathname + "?message=Email+Successfully+Sent%21&isError=0";
-    }
-
-    function onError(error) {
-        // remove this to avoid redirect
-        window.location = window.location.pathname + "?message=Email+could+not+be+sent.&isError=1";
-    }
-
-    var sendButton = $("#" + form_id + " [name='send']");
-
-    function send() {
-        sendButton.val('Sending…');
-        sendButton.prop('disabled',true);
-        var name = $("#" + form_id + " [name='name']").val();
-        var email = $("#" + form_id + " [name='email']").val();
-        var subject = $("#" + form_id + " [name='subject']").val();
-        var message = $("#" + form_id + " [name='message']").val();
-	        
-	data['name'] = name;
-        data['email'] = email;
-	data['subject'] = subject;
-        data['message'] = message;
-
-        $.post('https://postmail.invotes.com/send',
-            data,
-            onSuccess
-        ).fail(onError);
-
-        return false;
-    }
-
-    sendButton.on('click', send);
-
-    var $form = $("#" + form_id);
-    $form.submit(function( event ) {
-        event.preventDefault();
+  myform.find("button").text("Sending...");
+  emailjs.sendForm(service_id,template_id,myform[0])
+  	.then(function(){ 
+    	alert("Sent!");
+       myform.find("button").text("Send");
+    }, function(err) {
+       alert("Send email failed!\r\n Response:\n " + JSON.stringify(err));
+       myform.find("button").text("Send");
     });
+  return false;
+});
 
 })(jQuery);

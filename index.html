@@ -138,6 +138,18 @@
 										</div>
 
 										<div>
+											<img src="images/sbi4.png"alt="">
+											<div id="caroselFooter">
+												<div>Song Book Database Indexing</div>
+												<button><a href="https://songbookindex4.herokuapp.com/" class="image fit"  target="_blank">Demo</a></button>
+												<button><a href="https://github.com/Foyin/songbookindex4" class="image fit"  target="_blank">Documentation</a></button>	
+												<button><a href="https://songbookindex3.herokuapp.com/songs" class="image fit"  target="_blank">REST API Demo</a></button>
+												<button><a href="https://github.com/Foyin/song-index3" class="image fit"  target="_blank">Documentation</a></button>
+												<button><a href="https://songindexapi.herokuapp.com/api/songs" class="image fit"  target="_blank">REST API JSON Demo</a></button>
+												<button><a href="https://github.com/Foyin/Song-book-index1" class="image fit"  target="_blank">Documentation</a></button></div>
+										</div>
+
+										<div>
 											<img src="images/fingerprint.jpg"alt="">
 											<div id="caroselFooter">
 												<div>Finger-print Sensor Alarm</div>	
@@ -157,14 +169,14 @@
 												<div>Mechanic Shop Mentainance Program</div>	
 												<button><a href="https://github.com/Foyin/C/tree/master/mechanicShop-update" class="image fit"  target="_blank">Documentation</a></button></div>
 										</div>
-
+<!--
 										<div>
 											<img src="images/pentium.png"alt="">
 											<div id="caroselFooter">
 												<div>Ongoing Project</div>	
 												<button><a href="https://pentium-ministries2.herokuapp.com/index.html" class="image fit"  target="_blank">Demo</a></button></div>
 										</div>
-										
+										-->
 									</div>
 								</section>
 							</article>
@@ -176,20 +188,15 @@
 								</header>
 								<p>Have any questions or advice? Want to collaborate on something, or just want to say hi? Shoot me a message would be happy to hear from you
 								</p>
-								<form id="jquery_form" action="#" method="post">
+								<form id="contactForm" action="#" method="post">
 									<div>
 										<div class="row">
-											<div class="col-6 col-12-medium">
-												<input type="text" name="name" placeholder="Name" />
-											</div>
-											<div class="col-6 col-12-medium">
-												<input type="text" name="email" placeholder="Email" />
-											</div>
 											<div class="col-12">
-												<input type="text" name="subject" placeholder="Subject" />
+												<input type="text" name="from_name" placeholder="Name" />
 											</div>
+
 											<div class="col-12">
-												<textarea name="message" placeholder="Message" rows="6"></textarea>
+												<textarea name="message_html" placeholder="Message" rows="6"></textarea>
 											</div>
 											<div class="col-12">
 												<input type="submit" value="Send Message" name="send"/>
@@ -211,6 +218,8 @@
 			</div>
 
 		<!-- Scripts -->
+			<script type="text/javascript" src="https://cdn.emailjs.com/sdk/2.3.2/email.min.js"></script>
+			
 			<script src="assets/js/jquery.min.js"></script>
 			<script src="assets/js/browser.min.js"></script>
 			<script src="assets/js/breakpoints.min.js"></script>
