@@ -1814,6 +1814,33 @@ input, select, textarea {
   width: 14vw;
 }
 
+
+.tooltip .tooltiptext {
+  visibility: hidden;
+  opacity: 0.5;
+  font-size: 2vmin;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  border-radius: 5px;
+  padding: 1px;
+  transition: all 0.25s;
+
+  /* Position the tooltip */
+  position: absolute;
+  z-index: 1;
+  left: 20vmin;
+  bottom: 7vmin;
+}
+
+.tooltip {
+  position: relative;
+  display: inline-block;
+}
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+}
+
 /* Nav */
 
 	#nav {
