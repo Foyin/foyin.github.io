@@ -1791,10 +1791,11 @@ input, select, textarea {
 		}
 
 /* Logo */
-#skills .logos{
+.logos{
   display: grid;
-  grid-template-columns: auto auto auto auto;
-  grid-gap: 10px;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+  grid-template-areas: ". . . ." ". . . ." ". . . .";
 }
 
 .logo{
