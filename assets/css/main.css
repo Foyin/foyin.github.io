@@ -1814,6 +1814,23 @@ input, select, textarea {
   width: 14vw;
 }
 
+@media (max-width: 768px) {
+
+.logos {
+	  display: grid;
+	  grid-template-columns: 1fr 1fr;
+	  grid-template-rows: 1fr 1fr 1fr 1fr;
+	  grid-template-areas: ". ." ". ." ". ." ". .";
+	  grid-gap: 1%;
+	}
+	
+.logo{
+  height: 40vh;
+  width: 24vw;
+  margin: 2%;
+}
+	
+}
 
 .tooltip .tooltiptext {
   visibility: hidden;
@@ -2052,13 +2069,6 @@ input, select, textarea {
 
 				#main > .panel {
 					padding: 2em 1.5em 1.5em 1.5em;
-				}
-				
-				.logos {
-				  display: grid;
-				  grid-template-columns: 1fr 1fr;
-				  grid-template-rows: 1fr 1fr 1fr 1fr;
-				  grid-template-areas: ". ." ". ." ". ." ". .";
 				}
 
 			}
