@@ -2053,6 +2053,13 @@ input, select, textarea {
 				#main > .panel {
 					padding: 2em 1.5em 1.5em 1.5em;
 				}
+				
+				.logo {
+				  display: grid;
+				  grid-template-columns: 1fr 1fr;
+				  grid-template-rows: 1fr 1fr 1fr 1fr;
+				  grid-template-areas: ". ." ". ." ". ." ". .";
+				}
 
 			}
 
