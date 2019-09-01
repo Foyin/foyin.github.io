@@ -230,14 +230,14 @@ myform.submit(function(event){
   var service_id = "foyin";
   var template_id = "template_33SrHbDo";
 
-  myform.find("button").text("Sending...");
+  myform.find("#send").text("Sending...");
   emailjs.sendForm(service_id,template_id,myform[0])
   	.then(function(){ 
     	alert("Sent!");
-       myform.find("button").text("Send");
+       myform.find("#send").text("Send Message");
     }, function(err) {
        alert("Send email failed!\r\n Response:\n " + JSON.stringify(err));
-       myform.find("button").text("Send");
+       myform.find("#send").text("Send Message");
     });
   return false;
 });
