@@ -235,11 +235,11 @@ myform.submit(function(event){
   	.then(function(){ 
     	alert("Sent!");
          myform.find("#send").text("Send Message");
-	 $("textField").val("");
+	 $(".textField").val("");
     }, function(err) {
        alert("Send email failed!\r\n Response:\n " + JSON.stringify(err));
        myform.find("#send").text("Send Message");
-	$("textField").val("");
+	$(".textField").val("");
     });
   return false;
 });
