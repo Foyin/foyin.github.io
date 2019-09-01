@@ -227,7 +227,7 @@ myform.submit(function(event){
 	event.preventDefault();
 
   // Change to your service ID, or keep using the default service
-  var service_id = "default_service";
+  var service_id = "foyin";
   var template_id = "template_33SrHbDo";
 
   myform.find("button").text("Sending...");
