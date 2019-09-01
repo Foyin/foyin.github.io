@@ -222,7 +222,7 @@ $('#projects .row').slick({
 });
 
       emailjs.init("user_DOyZXEt52dypmFFUwlq7D");
-var myform = $("#contactForm");
+var myform = $("#contact");
 myform.submit(function(event){
 	event.preventDefault();
 
