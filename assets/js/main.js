@@ -234,12 +234,12 @@ myform.submit(function(event){
   emailjs.sendForm(service_id,template_id,myform[0])
   	.then(function(){ 
     	alert("Sent!");
-         $("#send").text("Send Message");
+         $(".textField").remove();
+	 $("#contactForm .row").prepend("<h2>Thank You!<h2>");
     }, function(err) {
        alert("Send email failed!\r\n Response:\n " + JSON.stringify(err));
        $("#send").text("Send Message");
     });
-  $(".textField").val("");
   return false;
 });
 
