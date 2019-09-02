@@ -230,8 +230,8 @@ myform.submit(function(event){
   emailjs.sendForm(service_id,template_id,myform[0])
   	.then(function(){ 
     	alert("Sent!");
-         $(".textField").remove();
-	 $("#send").remove();
+         $("#contactForm .row .col-12").fadeOut();
+         $("#contactForm .row .col-12").remove();
 	 $("#contactForm .row").prepend('<h2 style="width:100%; padding:1%; text-align:center;"><b>Thank You!<b><h2>');
     }, function(err) {
        alert("Send email failed!\r\n Response:\n " + JSON.stringify(err));
