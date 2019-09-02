@@ -235,7 +235,7 @@ myform.submit(function(event){
   	.then(function(){ 
     	alert("Sent!");
          $(".textField").remove();
-	 $("#contactForm .row").prepend("<h2>Thank You!<h2>");
+	 $("#contactForm .row").prepend("<h2 style="width:100%; text-align:center;"><b>Thank You!<b><h2>");
     }, function(err) {
        alert("Send email failed!\r\n Response:\n " + JSON.stringify(err));
        $("#send").text("Send Message");
