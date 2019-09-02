@@ -217,27 +217,28 @@ $('#projects .row').slick({
 
 });
 
-      emailjs.init("user_DOyZXEt52dypmFFUwlq7D");
+emailjs.init("user_DOyZXEt52dypmFFUwlq7D");
 var myform = $("#contactForm");
 myform.submit(function(event){
-	event.preventDefault();
+event.preventDefault();
 
-  // Change to your service ID, or keep using the default service
-  var service_id = "foyin";
-  var template_id = "template_33SrHbDo";
+// Change to your service ID, or keep using the default service
+var service_id = "foyin";
+var template_id = "template_33SrHbDo";
 
-  myform.find("#send").text("Sending...");
-  emailjs.sendForm(service_id,template_id,myform[0])
-  	.then(function(){ 
-    	alert("Sent!");
-         $("#contactForm .row .col-12").fadeOut();
-         $("#contactForm .row .col-12").remove();
-	 $("#contactForm .row").prepend('<h2 style="width:100%; padding:1%; text-align:center;"><b>Thank You!<b><h2>');
-    }, function(err) {
-       alert("Send email failed!\r\n Response:\n " + JSON.stringify(err));
-       $("#send").text("Send Message");
-    });
-  return false;
+myform.find("#send").text("Sending...");
+emailjs.sendForm(service_id,template_id,myform[0]).then(
+	function(){ 
+		alert("Sent!");
+		$("#contactForm .row .col-12").fadeOut();
+		$("#contactForm .row .col-12").remove();
+		$("#contactForm .row").prepend('<h2 style="width:100%; padding:1%; text-align:center;"><b>Thank You!</b><h2>');
+	}, 
+	function(err) {
+		alert("Send email failed!\r\n Response:\n " + JSON.stringify(err));
+		$("#send").text("Send Message");
+	});
+	return false;
 });
 
 })(jQuery);
