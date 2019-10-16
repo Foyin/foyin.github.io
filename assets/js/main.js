@@ -217,6 +217,18 @@ $('#projects .row').slick({
 
 });
 
+$('#design .row').slick({
+  dots: true,
+  arrows: false,
+  infinite: true,
+  speed: 500,
+  cssEase: 'linear',
+  dots: true,
+  autoplay: true,
+  autoplaySpeed: 3000,
+
+});
+
 emailjs.init("user_DOyZXEt52dypmFFUwlq7D");
 var myform = $("#contactForm");
 myform.submit(function(event){
