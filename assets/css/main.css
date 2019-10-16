@@ -69,6 +69,9 @@ input, select, textarea {
 
 /* Row */
 
+#projects .row {
+	margin: auto;
+}
 
 #projects .row #caroselFooter{
 	width: 100%;
@@ -99,6 +102,31 @@ input, select, textarea {
 	border-left: 1px solid black;
 	border-right: 1px solid black;
 	border-top: 1px solid black;
+}
+
+#design .row {
+	width: 100%;
+	height: 100%;
+	border-radius: 5px 5px 0px 0px;
+	border-left: 1px solid black;
+	border-right: 1px solid black;
+	border-top: 1px solid black;
+}
+
+#design .row img{
+	width: 40%;
+	height: 60vh;
+	float: left;
+}
+
+#design .row video{
+	width: 60%;
+	height: 60vh;
+	float: right;
+}
+
+#design .row {
+	margin: auto;
 }
 
 #contact .row{
@@ -2274,6 +2302,19 @@ input, select, textarea {
 				}
 
 		@media screen and (max-width: 736px) {
+
+			#design .row img{
+				width: 80%;
+				height: 60vh;
+				margin-left: 10%;
+				float: center;
+			}
+
+			#design .row video{
+				width: 100%;
+				height: 60vh;
+				float: center;
+			}
 
 			#footer .copyright li {
 				padding-left: 0.5em;
