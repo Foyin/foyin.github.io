@@ -205,8 +205,7 @@
 
 		}
 
-setTimeout(
-function(){$('#projects .row').slick({
+$('#projects .row').slick({
   dots: true,
   arrows: false,
   infinite: true,
@@ -216,7 +215,7 @@ function(){$('#projects .row').slick({
   autoplay: true,
   autoplaySpeed: 3000,
 
-});}, 2000)
+});
 
 $('#design .row').slick({
   dots: true,
