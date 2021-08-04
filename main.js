@@ -141,7 +141,7 @@ function init(){
     side        : THREE.DoubleSide,
     //normalMap: earthNormalMap,
     color: 0xaaaaaa,
-    specular: new THREE.Color('grey'),
+    specular: 0x87CEEB,
     specularMap: earthSpecularMap,
     bumpMap: earthBumpMap,
     bumpScale: 0.1,
