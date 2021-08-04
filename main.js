@@ -2,54 +2,15 @@ import * as THREE from 'https://cdn.skypack.dev/pin/three@v0.130.0-WI96Ec9p8dZb5
 //import { OrbitControls } from 'https://cdn.jsdelivr.net/npm/three-orbitcontrols@2.110.3/OrbitControls.min.js';
 
 // Setup
-const scene = new THREE.Scene();
+let spaceTexture, scene, camera, renderer, spotLight, ambientLight, earth, moon, clouds;
+let r, r2, theta, dTheta, dTheta2;
 
-const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-
-const renderer = new THREE.WebGLRenderer({
-  canvas: document.querySelector('#bg'),
-});
-
-
-
-//document.addEventListener( 'mousemove', onDocumentMouseMove );
-
-renderer.setPixelRatio(window.devicePixelRatio);
-renderer.setSize(window.innerWidth, window.innerHeight);
-camera.position.setZ(30);
-camera.position.setX(-3);
 
 let windowHalfX = window.innerWidth / 2;
 let windowHalfY = window.innerHeight / 2;
 let mouseX = 0;
 let mouseY = 0;
 
-renderer.render(scene, camera);
-
-
-//const ringGeometry = new THREE.RingGeometry( 1, 5, 32 );
-//const ringMaterial = new THREE.MeshBasicMaterial( { map: ringsTexture, side: THREE.DoubleSide } );
-//const ring = new THREE.Mesh( ringGeometry, ringMaterial );
-
-
-
-// Lights
-
-const spotLight = new THREE.SpotLight(0xffffff);
-spotLight.position.set(15, 0, 5);
-
-spotLight.castShadow = true;
-
-const ambientLight = new THREE.AmbientLight(0xffffff, 0.9);
-scene.add(spotLight, ambientLight);
-
-// Helpers
-
-// const lightHelper = new THREE.PointLightHelper(pointLight)
-// const gridHelper = new THREE.GridHelper(200, 50);
-// scene.add(lightHelper, gridHelper)
-
-// const controls = new OrbitControls(camera, renderer.domElement);
 
 const manager = new THREE.LoadingManager();
 manager.onStart = function ( url, itemsLoaded, itemsTotal ) {
@@ -77,6 +38,9 @@ manager.onError = function ( url ) {
   console.log( 'There was an error loading ' + url );
 
 };
+
+init();
+animate();
 
 function fadeOutEffect(target) {
     var fadeTarget = document.getElementById(target);
@@ -110,97 +74,130 @@ function addStar() {
   scene.add(star);
 }
 
-Array(400).fill().forEach(addStar);
 
-// Background
+function init(){
+  scene = new THREE.Scene();
 
-const spaceTexture = new THREE.TextureLoader(manager).load('images/stars_milky_way.jpg');
-scene.background = spaceTexture;
+  camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
 
-// Avatar
+  renderer = new THREE.WebGLRenderer({
+    canvas: document.querySelector('#bg'),
+  });
 
-//const jeffTexture = new THREE.TextureLoader().load('jeff.png');
+  // Lights
+  spotLight = new THREE.SpotLight(0xffffff);
+  spotLight.position.set(15, 0, 5);
 
+  spotLight.castShadow = true;
 
-const earthMap = new THREE.TextureLoader(manager).load('images/earthMap1k.jpg');
-const earthDayMap = new THREE.TextureLoader(manager).load('images/earth_daymap.jpg');
-const earthNightMap = new THREE.TextureLoader(manager).load('images/earth_nightmap.jpg');
-const earthNormalMap = new THREE.TextureLoader(manager).load('images/earth_normal_map.tif');
-const earthSpecularMap = new THREE.TextureLoader(manager).load('images/earth_specular_map.tif');
-//const earthCloudsMap = new THREE.TextureLoader().load('earth_clouds.jpg');
-const earthCloudsMap = new THREE.TextureLoader(manager).load('images/earth_clouds.jpg');
-const earthCloudsMapTransparent = new THREE.TextureLoader(manager).load('images/earthcloudmap.jpg');
+  ambientLight = new THREE.AmbientLight(0xffffff, 0.9);
+  scene.add(spotLight, ambientLight);
 
-const earthBumpMap = new THREE.TextureLoader(manager).load('images/earthBumpMap.jpg');
-
-const moonMap = new THREE.TextureLoader(manager).load('images/moon1.jpg');
-const moonNormalMap = new THREE.TextureLoader(manager).load('images/moonNormal.jpg');
-
-//Planets seperated at x^2/6 = z
-window.addEventListener( 'resize', onWindowResize );
+  // Background
+  spaceTexture = new THREE.TextureLoader(manager).load('images/stars_milky_way.jpg');
+  scene.background = spaceTexture;
+  Array(400).fill().forEach(addStar);
 
 
-const earth = new THREE.Mesh(
-  new THREE.SphereGeometry(2, 32, 32),
-  new THREE.MeshPhongMaterial({
-  map: earthDayMap,
-  side        : THREE.DoubleSide,
-  //normalMap: earthNormalMap,
-  color: 0xaaaaaa,
-  specular: new THREE.Color('grey'),
-  specularMap: earthSpecularMap,
-  bumpMap: earthBumpMap,
-  bumpScale: 0.1,
-  shininess: 25
-  })
-);
+  //document.addEventListener( 'mousemove', onDocumentMouseMove );
 
-earth.position.z = 0;
-earth.position.x = 0;
-earth.rotation.z -= 0.1;
-earth.rotation.y += Math.PI ;
+  renderer.setPixelRatio(window.devicePixelRatio);
+  renderer.setSize(window.innerWidth, window.innerHeight);
+  camera.position.setZ(30);
+  camera.position.setX(-3);
+
+  r = 2.5;
+  r2 = 4
+  theta = 0;
+  dTheta = 2 * Math.PI / 3000;
+  dTheta2 = 2 * Math.PI / 3000;
+
+  // Helpers
+
+  // const lightHelper = new THREE.PointLightHelper(pointLight)
+  // const gridHelper = new THREE.GridHelper(200, 50);
+  // scene.add(lightHelper, gridHelper)
+
+  // const controls = new OrbitControls(camera, renderer.domElement);
+
+  const earthMap = new THREE.TextureLoader(manager).load('images/earthMap1k.jpg');
+  const earthDayMap = new THREE.TextureLoader(manager).load('images/earth_daymap.jpg');
+  const earthNightMap = new THREE.TextureLoader(manager).load('images/earth_nightmap.jpg');
+  const earthNormalMap = new THREE.TextureLoader(manager).load('images/earth_normal_map.tif');
+  const earthSpecularMap = new THREE.TextureLoader(manager).load('images/earth_specular_map.tif');
+  //const earthCloudsMap = new THREE.TextureLoader().load('earth_clouds.jpg');
+  const earthCloudsMap = new THREE.TextureLoader(manager).load('images/earth_clouds.jpg');
+  const earthCloudsMapTransparent = new THREE.TextureLoader(manager).load('images/earthcloudmap.jpg');
+
+  const earthBumpMap = new THREE.TextureLoader(manager).load('images/earthBumpMap.jpg');
+
+  const moonMap = new THREE.TextureLoader(manager).load('images/moon1.jpg');
+  const moonNormalMap = new THREE.TextureLoader(manager).load('images/moonNormal.jpg');
+
+  earth = new THREE.Mesh(
+    new THREE.SphereGeometry(2, 32, 32),
+    new THREE.MeshPhongMaterial({
+    map: earthDayMap,
+    side        : THREE.DoubleSide,
+    //normalMap: earthNormalMap,
+    color: 0xaaaaaa,
+    specular: new THREE.Color('grey'),
+    specularMap: earthSpecularMap,
+    bumpMap: earthBumpMap,
+    bumpScale: 0.1,
+    shininess: 25
+    })
+  );
+
+  earth.position.z = 0;
+  earth.position.x = 0;
+  earth.rotation.z -= 0.1;
+  earth.rotation.y += Math.PI ;
 
 
 // jupiter
-const moon = new THREE.Mesh(
-  new THREE.SphereGeometry(0.1, 32, 32),
-  new THREE.MeshPhongMaterial({
-    map: moonMap,
-    normalMap: moonNormalMap,
-    side        : THREE.DoubleSide,
-    color: 0xaaaaaa,
-    specular: new THREE.Color('grey'),
-    shininess: 10
-  })
-);
-
-moon.position.z = 45;
-moon.position.x = -3;
-moon.rotation.z -= 0.1;
-
-var clouds = new THREE.Mesh(
-    new THREE.SphereGeometry(2.01, 32, 32),
+  moon = new THREE.Mesh(
+    new THREE.SphereGeometry(0.1, 32, 32),
     new THREE.MeshPhongMaterial({
-    map         : earthCloudsMap,
-    side        : THREE.DoubleSide,
-    transparent : true,
-    opacity     : 0.4,
-    depthWrite  : false,
-    shininess: 25
+      map: moonMap,
+      normalMap: moonNormalMap,
+      side        : THREE.DoubleSide,
+      color: 0xaaaaaa,
+      specular: new THREE.Color('grey'),
+      shininess: 10
+    })
+  );
 
-  })
-);
+  moon.position.z = 45;
+  moon.position.x = -3;
+  moon.rotation.z -= 0.1;
 
-clouds.position.z = earth.position.z;
-clouds.position.x = earth.position.x;
+  clouds = new THREE.Mesh(
+      new THREE.SphereGeometry(2.01, 32, 32),
+      new THREE.MeshPhongMaterial({
+      map         : earthCloudsMap,
+      side        : THREE.DoubleSide,
+      transparent : true,
+      opacity     : 0.4,
+      depthWrite  : false,
+      shininess: 25
+
+    })
+  );
+
+  clouds.position.z = earth.position.z;
+  clouds.position.x = earth.position.x;
 
 
-scene.add(clouds);
+  scene.add(clouds);
 
-scene.add(earth);
-scene.add(moon);
+  scene.add(earth);
+  scene.add(moon);
 
 
+  window.addEventListener( 'resize', onWindowResize );
+
+}
 // Scroll Animation
 
 function moveCamera() {
@@ -223,28 +220,21 @@ function moveCamera() {
 
 
 function onWindowResize() {
+  windowHalfX = window.innerWidth / 2;
+  windowHalfY = window.innerHeight / 2;
 
-        windowHalfX = window.innerWidth / 2;
-        windowHalfY = window.innerHeight / 2;
-
-        camera.aspect = window.innerWidth / window.innerHeight;
-        camera.updateProjectionMatrix();
-        renderer.setSize( window.innerWidth, window.innerHeight );
+  camera.aspect = window.innerWidth / window.innerHeight;
+  camera.updateProjectionMatrix();
+  renderer.setSize( window.innerWidth, window.innerHeight );
 }
-
+/*
 function onDocumentMouseMove( event ) {
 
   mouseX = ( event.clientX - windowHalfX ) / 100;
   mouseY = ( event.clientY - windowHalfY ) / 100;
 
 }
-var r = 2.5;
-var r2 = 4
-var theta = 0;
-var dTheta = 2 * Math.PI / 3000;
-var dTheta2 = 2 * Math.PI / 3000;
-
-
+*/
 
 function animate() {
   requestAnimationFrame(animate);
@@ -273,11 +263,11 @@ function animate() {
 
 
   // controls.update();
+  renderer.clear();
 
   renderer.render(scene, camera);
 }
 
-animate();
 
 
 
