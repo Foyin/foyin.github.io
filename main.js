@@ -120,14 +120,14 @@ function init(){
 
   // const controls = new OrbitControls(camera, renderer.domElement);
 
-  const earthMap = new THREE.TextureLoader(manager).load('images/earthMap1k.jpg');
+  //const earthMap = new THREE.TextureLoader(manager).load('images/earthMap1k.jpg');
   const earthDayMap = new THREE.TextureLoader(manager).load('images/earth_daymap.jpg');
-  const earthNightMap = new THREE.TextureLoader(manager).load('images/earth_nightmap.jpg');
-  const earthNormalMap = new THREE.TextureLoader(manager).load('images/earth_normal_map.tif');
+  //const earthNightMap = new THREE.TextureLoader(manager).load('images/earth_nightmap.jpg');
+  //const earthNormalMap = new THREE.TextureLoader(manager).load('images/earth_normal_map.tif');
   const earthSpecularMap = new THREE.TextureLoader(manager).load('images/earth_specular_map.tif');
   //const earthCloudsMap = new THREE.TextureLoader().load('earth_clouds.jpg');
   const earthCloudsMap = new THREE.TextureLoader(manager).load('images/earth_clouds.jpg');
-  const earthCloudsMapTransparent = new THREE.TextureLoader(manager).load('images/earthcloudmap.jpg');
+  //const earthCloudsMapTransparent = new THREE.TextureLoader(manager).load('images/earthcloudmap.jpg');
 
   const earthBumpMap = new THREE.TextureLoader(manager).load('images/earthBumpMap.jpg');
 
@@ -138,7 +138,6 @@ function init(){
     new THREE.SphereGeometry(2, 32, 32),
     new THREE.MeshPhongMaterial({
     map: earthDayMap,
-    side        : THREE.DoubleSide,
     //normalMap: earthNormalMap,
     color: 0xaaaaaa,
     specular: 0x87CEEB,
@@ -161,7 +160,6 @@ function init(){
     new THREE.MeshPhongMaterial({
       map: moonMap,
       normalMap: moonNormalMap,
-      side        : THREE.DoubleSide,
       color: 0xaaaaaa,
       specular: new THREE.Color('grey'),
       shininess: 10
@@ -176,7 +174,6 @@ function init(){
       new THREE.SphereGeometry(2.01, 32, 32),
       new THREE.MeshPhongMaterial({
       map         : earthCloudsMap,
-      side        : THREE.DoubleSide,
       transparent : true,
       opacity     : 0.4,
       depthWrite  : false,
