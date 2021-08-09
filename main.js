@@ -96,7 +96,7 @@ function init(){
   // Background
   spaceTexture = new THREE.TextureLoader(manager).load('images/stars_milky_way.jpg');
   scene.background = spaceTexture;
-  Array(400).fill().forEach(addStar);
+  Array(250).fill().forEach(addStar);
 
 
   //document.addEventListener( 'mousemove', onDocumentMouseMove );
