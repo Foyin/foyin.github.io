@@ -135,7 +135,7 @@ function init(){
   const moonNormalMap = new THREE.TextureLoader(manager).load('images/moonNormal.jpg');
 
   earth = new THREE.Mesh(
-    new THREE.SphereGeometry(2, 32, 32),
+    new THREE.SphereGeometry(2, 30, 30),
     new THREE.MeshPhongMaterial({
     map: earthDayMap,
     //normalMap: earthNormalMap,
@@ -156,7 +156,7 @@ function init(){
 
 // jupiter
   moon = new THREE.Mesh(
-    new THREE.SphereGeometry(0.1, 32, 32),
+    new THREE.SphereGeometry(0.1, 28, 28),
     new THREE.MeshPhongMaterial({
       map: moonMap,
       normalMap: moonNormalMap,
