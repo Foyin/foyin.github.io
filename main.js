@@ -124,7 +124,7 @@ function init(){
   const earthDayMap = new THREE.TextureLoader(manager).load('images/earth_daymap.jpg');
   //const earthNightMap = new THREE.TextureLoader(manager).load('images/earth_nightmap.jpg');
   //const earthNormalMap = new THREE.TextureLoader(manager).load('images/earth_normal_map.tif');
-  const earthSpecularMap = new THREE.TextureLoader(manager).load('images/earth_specular_map.tif');
+  const earthSpecularMap = new THREE.TextureLoader(manager).load('images/earthspec1k.jpg');
   //const earthCloudsMap = new THREE.TextureLoader().load('earth_clouds.jpg');
   const earthCloudsMap = new THREE.TextureLoader(manager).load('images/earth_clouds.jpg');
   //const earthCloudsMapTransparent = new THREE.TextureLoader(manager).load('images/earthcloudmap.jpg');
