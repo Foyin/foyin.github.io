@@ -85,7 +85,7 @@ function init(){
   });
 
   // Lights
-  spotLight = new THREE.SpotLight(0xffffff, 2, 200, Math.PI/2, 1, 2);
+  spotLight = new THREE.SpotLight(0xffffff, 2, 200, Math.PI/2, 0.2, 2);
   spotLight.position.set(15, 0, 5);
 
   spotLight.castShadow = true;
