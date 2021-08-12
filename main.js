@@ -85,12 +85,12 @@ function init(){
   });
 
   // Lights
-  spotLight = new THREE.SpotLight(0xffffff);
+  spotLight = new THREE.SpotLight(0xffffff, 2, 200, Math.PI/2, 1, 2);
   spotLight.position.set(15, 0, 5);
 
   spotLight.castShadow = true;
 
-  ambientLight = new THREE.AmbientLight(0xffffff, 0.9);
+  ambientLight = new THREE.AmbientLight(0xffffff, 0.6);
   scene.add(spotLight, ambientLight);
 
   // Background
@@ -140,7 +140,7 @@ function init(){
     map: earthDayMap,
     //normalMap: earthNormalMap,
     color: 0xaaaaaa,
-    specular: 0x87CEEB,
+    specular: 0x111111,
     specularMap: earthSpecularMap,
     bumpMap: earthBumpMap,
     bumpScale: 0.1,
