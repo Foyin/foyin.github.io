@@ -175,7 +175,7 @@ function init(){
       new THREE.MeshPhongMaterial({
       map         : earthCloudsMap,
       transparent : true,
-      opacity     : 0.5,
+      opacity     : 0.4,
       depthWrite  : false,
       shininess: 25
 
