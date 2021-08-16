@@ -90,7 +90,7 @@ function init(){
 
   directlLight.castShadow = true;
 
-  ambientLight = new THREE.AmbientLight(0xffffff, 0.1);
+  ambientLight = new THREE.AmbientLight(0xffffff, 0.2);
   scene.add(directlLight, ambientLight);
 
   // Background
