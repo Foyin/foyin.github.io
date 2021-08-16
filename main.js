@@ -2,7 +2,7 @@ import * as THREE from 'https://cdn.skypack.dev/pin/three@v0.130.0-WI96Ec9p8dZb5
 //import { OrbitControls } from 'https://cdn.jsdelivr.net/npm/three-orbitcontrols@2.110.3/OrbitControls.min.js';
 
 // Setup
-let spaceTexture, scene, camera, renderer, spotLight, ambientLight, earth, moon, clouds;
+let spaceTexture, scene, camera, renderer, directlLight, ambientLight, earth, moon, clouds;
 let r, r2, theta, dTheta, dTheta2;
 
 
@@ -85,13 +85,13 @@ function init(){
   });
 
   // Lights
-  spotLight = new THREE.SpotLight(0xffffff, 2, 200, Math.PI/2, 0.2, 2);
-  spotLight.position.set(15, 0, 5);
+  directlLight = new THREE.DirectionalLight(0xffffff, 2, 200, Math.PI/2, 0.2, 2);
+  directlLight.position.set(15, 0, 5);
 
-  spotLight.castShadow = true;
+  directlLight.castShadow = true;
 
-  ambientLight = new THREE.AmbientLight(0xffffff, 0.6);
-  scene.add(spotLight, ambientLight);
+  ambientLight = new THREE.AmbientLight(0xffffff, 0.1);
+  scene.add(directlLight, ambientLight);
 
   // Background
   spaceTexture = new THREE.TextureLoader(manager).load('images/stars_milky_way.jpg');
@@ -151,7 +151,7 @@ function init(){
   earth.position.z = 0;
   earth.position.x = 0;
   earth.rotation.z -= 0.1;
-  earth.rotation.y += Math.PI ;
+  earth.rotation.y += Math.PI *2;
 
 
 // jupiter
@@ -175,7 +175,7 @@ function init(){
       new THREE.MeshPhongMaterial({
       map         : earthCloudsMap,
       transparent : true,
-      opacity     : 0.4,
+      opacity     : 0.5,
       depthWrite  : false,
       shininess: 25
 
@@ -240,7 +240,7 @@ function animate() {
   //camera.position.y += ( - mouseY - camera.position.y ) * .05;
 
   earth.rotation.y += 0.0002;
-  clouds.rotation.y += 0.0001;
+  clouds.rotation.y += 0.0004;
 
   moon.rotation.x += 0.002;
   moon.rotation.y += 0.001;
