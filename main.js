@@ -239,8 +239,8 @@ function animate() {
   //camera.position.x += ( mouseX - camera.position.x ) * .05;
   //camera.position.y += ( - mouseY - camera.position.y ) * .05;
 
-  earth.rotation.y += 0.002;
-  clouds.rotation.y += 0.001;
+  earth.rotation.y += 0.0002;
+  clouds.rotation.y += 0.0001;
 
   moon.rotation.x += 0.002;
   moon.rotation.y += 0.001;
