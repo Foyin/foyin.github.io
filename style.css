@@ -38,6 +38,10 @@ input, select, textarea {
 }
 
 /* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+      box-shadow: inset 2px 2px 3px black;
+}
+
 ::-webkit-scrollbar-thumb:active {
       box-shadow: inset 2px 2px 3px black;
 }
