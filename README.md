@@ -1,5 +1,6 @@
 # 3D portfolio
 
+A quick summary of my skills
 
 ## Usage
 
