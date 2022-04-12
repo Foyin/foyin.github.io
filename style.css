@@ -271,12 +271,11 @@ input, textarea, select {
 
   /* Logo */
 .logos{
+  display: grid;
   grid-template-columns: repeat(auto-fit, minmax(19rem, 1fr));
 }
 
 .logo{
-  height: 80%;
-  width: 64%;
   margin: 2%;
   position: relative;
   -webkit-transition: all 0.2s ease;
