@@ -1,7 +1,7 @@
 # 3D portfolio
 
 A quick summary of my skills
-[Demo](https://foyin.github.io/)
+[Live Demo](https://foyin.github.io/)
 
 ## Usage
 
