@@ -271,10 +271,7 @@ input, textarea, select {
 
   /* Logo */
 .logos{
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
-  grid-template-rows: 1fr 1fr 1fr;
-  grid-template-areas: ". . . ." ". . . ." ". . . .";
+  grid-template-columns: repeat(auto-fit, minmax(19rem, 1fr));
 }
 
 .logo{
@@ -295,20 +292,6 @@ input, textarea, select {
 }
 
 @media (max-width: 768px) {
-
-  .logos {
-      display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
-      grid-template-rows: 1fr 1fr 1fr 1fr;
-      grid-template-areas: ". . ." ". . ." ". . ." ". . .";
-      grid-gap: 1%;
-    }
-    
-  .logo{
-    height: 80%;
-    width: 80%;
-    margin: auto;
-  }
 
 
 
