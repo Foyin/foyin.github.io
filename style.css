@@ -276,6 +276,8 @@ input, textarea, select {
 }
 
 .logo{
+  height: 41%;
+  width: 33%;
   margin: 2%;
   position: relative;
   -webkit-transition: all 0.2s ease;
@@ -286,8 +288,8 @@ input, textarea, select {
 
 .logo:hover{
   margin: 0%;
-  height: 82%;
-  width: 66%;
+  height: 43%;
+  width: 35%;
 }
 
 @media (max-width: 768px) {
