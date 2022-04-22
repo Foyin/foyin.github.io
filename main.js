@@ -62,7 +62,7 @@ function fadeOutEffect(target) {
 }
 
 function addStar() {
-  const geometry = new THREE.SphereGeometry(0.25, 10, 10);
+  const geometry = new THREE.SphereGeometry(0.25, 7, 7);
   const material = new THREE.MeshStandardMaterial({ color: 0xffffff });
   const star = new THREE.Mesh(geometry, material);
 
@@ -135,7 +135,7 @@ function init(){
   const moonNormalMap = new THREE.TextureLoader(manager).load('images/moonNormal.jpg');
 
   earth = new THREE.Mesh(
-    new THREE.SphereGeometry(2, 28, 28),
+    new THREE.SphereGeometry(2, 26, 26),
     new THREE.MeshPhongMaterial({
     map: earthDayMap,
     //normalMap: earthNormalMap,
@@ -156,7 +156,7 @@ function init(){
 
 // jupiter
   moon = new THREE.Mesh(
-    new THREE.SphereGeometry(0.1, 20, 20),
+    new THREE.SphereGeometry(0.1, 15, 15),
     new THREE.MeshPhongMaterial({
       map: moonMap,
       normalMap: moonNormalMap,
@@ -171,7 +171,7 @@ function init(){
   moon.rotation.z -= 0.1;
 
   clouds = new THREE.Mesh(
-      new THREE.SphereGeometry(2.01, 30, 30),
+      new THREE.SphereGeometry(2.01, 28, 28),
       new THREE.MeshPhongMaterial({
       map         : earthCloudsMap,
       transparent : true,
