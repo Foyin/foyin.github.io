@@ -133,6 +133,8 @@ function init(){
 
   const moonMap = new THREE.TextureLoader(manager).load('images/moon1.jpg');
   const moonNormalMap = new THREE.TextureLoader(manager).load('images/moonNormal.jpg');
+  const saturnTexture = new THREE.TextureLoader(manager).load('images/saturn.jpg');
+
 
   earth = new THREE.Mesh(
     new THREE.SphereGeometry(2, 26, 26),
@@ -144,7 +146,7 @@ function init(){
     specularMap: earthSpecularMap,
     bumpMap: earthBumpMap,
     bumpScale: 0.1,
-    shininess: 25
+    shininess: 20
     })
   );
 
@@ -152,6 +154,37 @@ function init(){
   earth.position.x = 0;
   earth.rotation.z -= 0.1;
   earth.rotation.y += Math.PI *2;
+
+  // Saturn
+  const saturn = new THREE.Mesh(
+    new THREE.SphereGeometry(5, 24, 24),
+    new THREE.MeshPhongMaterial({
+      map: saturnTexture,
+      color: 0xaaaaaa,
+      specular: 0x333333,
+      shininess: 20
+    })
+  );
+
+  saturn.position.z = 0;
+  saturn.position.x = 0;
+  saturn.rotation.z -= 0.1;
+  saturn.rotation.y += Math.PI *2;
+  
+  // Saturns Torus or rings
+  const ringsTexture = new THREE.TextureLoader(manager).load('images/rings3.jpg');
+  const torusGeometry = new THREE.TorusGeometry(10, 3, 2, 180);
+  const torusMaterial = new THREE.MeshPhongMaterial({
+      map: ringsTexture, 
+      color: 0xfae5bf,
+      specular: 0xffffff,
+      transparent:true,
+      opacity: 0.4,
+      shininess: 35 
+    });
+  const torus = new THREE.Mesh(torusGeometry, torusMaterial);
+
+  torus.rotation.x += 1.6;
 
 
 // jupiter
@@ -186,10 +219,12 @@ function init(){
   clouds.position.x = earth.position.x;
 
 
-  scene.add(clouds);
-
-  scene.add(earth);
-  scene.add(moon);
+  //scene.add(clouds);
+  //scene.add(earth);
+  //scene.add(moon);
+  
+  scene.add(saturn);
+  scene.add(torus);
 
 
   window.addEventListener( 'resize', onWindowResize );
