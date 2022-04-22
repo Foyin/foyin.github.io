@@ -173,7 +173,7 @@ function init(){
   
   // Saturns Torus or rings
   const ringsTexture = new THREE.TextureLoader(manager).load('images/rings3.jpg');
-  const torusGeometry = new THREE.TorusGeometry(6, 3, 2, 180);
+  const torusGeometry = new THREE.TorusGeometry(5, 3, 2, 180);
   const torusMaterial = new THREE.MeshPhongMaterial({
       map: ringsTexture, 
       color: 0xfae5bf,
