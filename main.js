@@ -183,7 +183,9 @@ function init(){
       shininess: 35 
     });
   const torus = new THREE.Mesh(torusGeometry, torusMaterial);
-
+  
+  torus.position.z = 0;
+  torus.position.x = 0;
   torus.rotation.x += 1.6;
 
 
