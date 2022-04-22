@@ -220,7 +220,7 @@ function init(){
   clouds.position.z = earth.position.z;
   clouds.position.x = earth.position.x;
 
-  if (Math.random() >= 0.7){
+  if (Math.random() >= 0.8){
     scene.add(saturn);
     scene.add(torus);
   }
