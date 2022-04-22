@@ -290,7 +290,7 @@ function animate() {
   camera.position.x = r * Math.cos(theta) + earth.position.x;
   camera.position.z = r * Math.sin(theta) + earth.position.z;
   camera.position.y = r * Math.cos(theta);
-  camera.lookAt(earth.position);
+  camera.lookAt(saturn.position);
   //moon.position.y = r2 * Math.cos(theta);
 
 
