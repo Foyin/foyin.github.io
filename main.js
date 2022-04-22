@@ -225,12 +225,13 @@ function init(){
   if (Math.random() >= 0.1){
     scene.add(saturn);
     scene.add(torus);
-    else{
-      scene.add(clouds);
-      scene.add(earth);
-      scene.add(moon);
-    }
   }
+  else{
+    scene.add(clouds);
+    scene.add(earth);
+    scene.add(moon);
+  }
+  
   window.addEventListener( 'resize', onWindowResize );
 
 }
