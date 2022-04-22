@@ -222,7 +222,7 @@ function init(){
   scene.add(saturn);
   scene.add(torus);
 
-  if (Math.random() >= 0.1){
+  if (Math.random() >= 0.8){
     scene.add(saturn);
     scene.add(torus);
   }
