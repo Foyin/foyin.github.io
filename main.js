@@ -146,7 +146,7 @@ function init(){
     specularMap: earthSpecularMap,
     bumpMap: earthBumpMap,
     bumpScale: 0.1,
-    shininess: 20
+    shininess: 23
     })
   );
 
@@ -157,12 +157,12 @@ function init(){
 
   // Saturn
   saturn = new THREE.Mesh(
-    new THREE.SphereGeometry(2, 24, 24),
+    new THREE.SphereGeometry(2, 28, 28),
     new THREE.MeshPhongMaterial({
       map: saturnTexture,
       color: 0xaaaaaa,
       specular: 0x333333,
-      shininess: 20
+      shininess: 25
     })
   );
 
@@ -173,7 +173,7 @@ function init(){
   
   // Saturns Torus or rings
   const ringsTexture = new THREE.TextureLoader(manager).load('images/rings3.jpg');
-  const torusGeometry = new THREE.TorusGeometry(4, 3, 2, 180);
+  const torusGeometry = new THREE.TorusGeometry(6, 3, 2, 180);
   const torusMaterial = new THREE.MeshPhongMaterial({
       map: ringsTexture, 
       color: 0xfae5bf,
@@ -218,15 +218,19 @@ function init(){
   clouds.position.z = earth.position.z;
   clouds.position.x = earth.position.x;
 
-
-  //scene.add(clouds);
-  //scene.add(earth);
-  //scene.add(moon);
   
   scene.add(saturn);
   scene.add(torus);
 
-
+  if (Math.random() >= 0.1){
+    scene.add(saturn);
+    scene.add(torus);
+    else{
+      scene.add(clouds);
+      scene.add(earth);
+      scene.add(moon);
+    }
+  }
   window.addEventListener( 'resize', onWindowResize );
 
 }
@@ -290,7 +294,7 @@ function animate() {
   camera.position.x = r * Math.cos(theta) + earth.position.x;
   camera.position.z = r * Math.sin(theta) + earth.position.z;
   camera.position.y = r * Math.cos(theta);
-  camera.lookAt(saturn.position);
+  camera.lookAt(0, 0, 0);
   //moon.position.y = r2 * Math.cos(theta);
 
 
