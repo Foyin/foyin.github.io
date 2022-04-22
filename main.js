@@ -156,7 +156,7 @@ function init(){
   earth.rotation.y += Math.PI *2;
 
   // Saturn
-  const saturn = new THREE.Mesh(
+  saturn = new THREE.Mesh(
     new THREE.SphereGeometry(2, 24, 24),
     new THREE.MeshPhongMaterial({
       map: saturnTexture,
