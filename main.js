@@ -157,7 +157,7 @@ function init(){
 
   // Saturn
   const saturn = new THREE.Mesh(
-    new THREE.SphereGeometry(5, 24, 24),
+    new THREE.SphereGeometry(2, 24, 24),
     new THREE.MeshPhongMaterial({
       map: saturnTexture,
       color: 0xaaaaaa,
