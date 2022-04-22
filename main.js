@@ -2,7 +2,7 @@ import * as THREE from 'https://cdn.skypack.dev/pin/three@v0.130.0-WI96Ec9p8dZb5
 //import { OrbitControls } from 'https://cdn.jsdelivr.net/npm/three-orbitcontrols@2.110.3/OrbitControls.min.js';
 
 // Setup
-let spaceTexture, scene, camera, renderer, directlLight, ambientLight, earth, moon, clouds;
+let spaceTexture, scene, camera, renderer, directlLight, ambientLight, earth, moon, clouds, saturn;
 let r, r2, theta, dTheta, dTheta2;
 
 
