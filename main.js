@@ -2,7 +2,7 @@ import * as THREE from 'https://cdn.skypack.dev/pin/three@v0.130.0-WI96Ec9p8dZb5
 //import { OrbitControls } from 'https://cdn.jsdelivr.net/npm/three-orbitcontrols@2.110.3/OrbitControls.min.js';
 
 // Setup
-let spaceTexture, scene, camera, renderer, directlLight, ambientLight, earth, moon, clouds, saturn;
+let spaceTexture, scene, camera, renderer, directlLight, ambientLight, earth, moon, clouds, saturn, mars;
 let r, r2, theta, dTheta, dTheta2;
 
 
@@ -134,6 +134,10 @@ function init(){
   const moonMap = new THREE.TextureLoader(manager).load('images/moon1.jpg');
   const moonNormalMap = new THREE.TextureLoader(manager).load('images/moonNormal.jpg');
   const saturnTexture = new THREE.TextureLoader(manager).load('images/saturn.jpg');
+  
+  const marsTexture = new THREE.TextureLoader(manager).load('images/mars.jpg');
+  const marsNormalTexture = new THREE.TextureLoader(manager).load('images/marsNormal.jpg');
+  const marsBumpMap = new THREE.TextureLoader(manager).load('images/marsbump.jpg');
 
 
   earth = new THREE.Mesh(
@@ -188,8 +192,25 @@ function init(){
   torus.position.x = 0;
   torus.rotation.x += 1.6;
 
+// Mars
+ mars = new THREE.Mesh(
+  new THREE.SphereGeometry(2, 27, 27),
+  new THREE.MeshPhongMaterial({
+    map: marsTexture,
+    color: 0xaaaaaa,
+    specular: 0x333333,
+    bumpMap: marsBumpMap,
+    bumpScale: 0.05,
+    shininess: 35
+  })
+);
+  
+  mars.position.z = 0;
+  mars.position.x = 0;
+  mars.rotation.z -= 0.1;
+  mars.rotation.y += Math.PI *2;
 
-// jupiter
+// moon
   moon = new THREE.Mesh(
     new THREE.SphereGeometry(0.1, 15, 15),
     new THREE.MeshPhongMaterial({
@@ -220,9 +241,12 @@ function init(){
   clouds.position.z = earth.position.z;
   clouds.position.x = earth.position.x;
 
-  if (Math.random() >= 0.8){
+  if (Math.random() >= 0.6){
     scene.add(saturn);
     scene.add(torus);
+  }
+  else if(Math.random() > 0.6 && Math.random() <= 0.8){
+    scene.add(mars);
   }
   else{
     scene.add(clouds);
