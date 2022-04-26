@@ -166,7 +166,7 @@ function init(){
       map: saturnTexture,
       color: 0xaaaaaa,
       specular: 0x333333,
-      shininess: 25
+      shininess: 20
     })
   );
 
@@ -183,8 +183,8 @@ function init(){
       color: 0xfae5bf,
       specular: 0xffffff,
       transparent:true,
-      opacity: 0.4,
-      shininess: 35 
+      opacity: 0.5,
+      shininess: 25 
     });
   const torus = new THREE.Mesh(torusGeometry, torusMaterial);
   
@@ -201,7 +201,7 @@ function init(){
     specular: 0x333333,
     bumpMap: marsBumpMap,
     bumpScale: 0.05,
-    shininess: 35
+    shininess: 20
   })
 );
   
