@@ -200,7 +200,7 @@ function init(){
     color: 0xaaaaaa,
     specular: 0x333333,
     bumpMap: marsBumpMap,
-    bumpScale: 0.5,
+    bumpScale: 0.1,
     shininess: 17
   })
 );
