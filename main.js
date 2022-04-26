@@ -242,11 +242,12 @@ function init(){
   clouds.position.x = earth.position.x;
 
   if (Math.random() >= 0.6){
-    scene.add(saturn);
+    scene.add(mars);
     scene.add(torus);
   }
   else if(Math.random() > 0.6 && Math.random() <= 0.8){
-    scene.add(mars);
+    scene.add(saturn);
+    scene.add(torus);
   }
   else{
     scene.add(clouds);
