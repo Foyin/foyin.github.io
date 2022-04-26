@@ -199,8 +199,10 @@ function init(){
     map: marsTexture,
     color: 0xaaaaaa,
     specular: 0x333333,
-    bumpMap: marsBumpMap,
-    bumpScale: 0.1,
+    //bumpMap: marsBumpMap,
+    //bumpScale: 0.1,
+    normalMap: marsNormalTexture,
+    normalScale: 0.5,
     shininess: 17
   })
 );
