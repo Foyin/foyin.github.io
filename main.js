@@ -62,7 +62,7 @@ function fadeOutEffect(target) {
 }
 
 function addStar() {
-  const geometry = new THREE.SphereGeometry(0.25, 7, 7);
+  const geometry = new THREE.SphereGeometry(0.25, 5, 5);
   const material = new THREE.MeshStandardMaterial({ color: 0xffffff });
   const star = new THREE.Mesh(geometry, material);
 
