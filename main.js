@@ -243,19 +243,18 @@ function init(){
 
   if (Math.random() >= 0.6){
     scene.add(mars);
+    scene.add(clouds);
+    scene.add(earth);
+    scene.add(moon);
+  }
   }
   else if(Math.random() > 0.6 && Math.random() <= 0.8){
     scene.add(saturn);
     scene.add(torus);
   }
   else{
-    scene.add(clouds);
-    scene.add(earth);
-    scene.add(moon);
-  }
-  
-  window.addEventListener( 'resize', onWindowResize );
-
+    scene.add(mars);
+    window.addEventListener( 'resize', onWindowResize );
 }
 // Scroll Animation
 
