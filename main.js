@@ -250,7 +250,11 @@ function init(){
     scene.add(earth);
     scene.add(moon);
   }
+  
+  
+  
     window.addEventListener( 'resize', onWindowResize );
+}
 
 // Scroll Animation
 
