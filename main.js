@@ -62,7 +62,7 @@ function fadeOutEffect(target) {
 }
 
 function addStar() {
-  const geometry = new THREE.SphereGeometry(0.25, 5, 5);
+  const geometry = new THREE.SphereGeometry(0.25, 3, 3);
   const material = new THREE.MeshStandardMaterial({ color: 0xffffff });
   const star = new THREE.Mesh(geometry, material);
 
@@ -161,7 +161,7 @@ function init(){
 
   // Saturn
   saturn = new THREE.Mesh(
-    new THREE.SphereGeometry(2, 28, 28),
+    new THREE.SphereGeometry(2, 26, 26),
     new THREE.MeshPhongMaterial({
       map: saturnTexture,
       color: 0xaaaaaa,
@@ -212,7 +212,7 @@ function init(){
 
 // moon
   moon = new THREE.Mesh(
-    new THREE.SphereGeometry(0.1, 15, 15),
+    new THREE.SphereGeometry(0.1, 10, 10),
     new THREE.MeshPhongMaterial({
       map: moonMap,
       normalMap: moonNormalMap,
