@@ -241,7 +241,7 @@ function init(){
   clouds.position.z = earth.position.z;
   clouds.position.x = earth.position.x;
 
-  if (Math.random() >= 0.4){
+  if (Math.random() >= 0.7){
     scene.add(clouds);
     scene.add(earth);
     scene.add(moon);
