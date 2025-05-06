@@ -242,13 +242,13 @@ function init(){
   clouds.position.x = earth.position.x;
 
   if (Math.random() >= 0.8){
+    scene.add(saturn);
+    scene.add(torus);
+  }
+  else{
     scene.add(clouds);
     scene.add(earth);
     scene.add(moon);
-  }
-  else{
-    scene.add(saturn);
-    scene.add(torus);
   }
   
   
